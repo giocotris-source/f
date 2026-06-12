@@ -1,0 +1,17 @@
+name: Build App
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: macos-13
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build App
+      run: |
+        xcodebuild -project TouchBarCustomizer.xcodeproj -scheme TouchBarCustomizer -configuration Release SYMROOT=build CODE_SIGNING_ALLOWED=NO MACOSX_DEPLOYMENT_TARGET=12.0
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: TouchBarCustomizer
+        path: build/Release/TouchBarCustomizer.app
