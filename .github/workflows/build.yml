@@ -6,12 +6,12 @@ jobs:
   build:
     runs-on: macos-15-intel
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build App
       run: |
         xcodebuild -project TouchBarCustomizer.xcodeproj -scheme TouchBarCustomizer -configuration Release SYMROOT=build CODE_SIGNING_ALLOWED=NO MACOSX_DEPLOYMENT_TARGET=12.0
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: TouchBarCustomizer
         path: build/Release/TouchBarCustomizer.app
